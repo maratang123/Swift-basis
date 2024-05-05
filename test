@@ -1,0 +1,11 @@
+// Intvar nums = Array(readLine()!).map {Int(String($0))!}// Stringvar nums = Array(readLine()!).map {String($0)}// FileIOlet nums = [file.readInt(), file.readInt()]
+<prefix / suffix>
+let strData = "hello!!"// [prefix : 시작 기준으로 지정한 문자 개수 출력]let startData = strData.prefix(5)print(startData)  // hello// [suffix : 종료 기준으로 지정한 문자 개수 출력]let endData = strData.suffix(4)print(endData) // !!let numbers = [1, 2, 3, 4, 5]print(numbers.prefix(2))// Prints "[1, 2]"print(numbers.prefix(10))// Prints "[1, 2, 3, 4, 5]"let numbers = [1, 2, 3, 4, 5]print(numbers.suffix(2))// Prints "[4, 5]"print(numbers.suffix(10))// Prints "[1, 2, 3, 4, 5]"
+<split(whereSeparator: {}>
+/// 기준이 되는 문자를 제외한 요소를 배열로 만들어 리턴let dartResult = "1S2D*3T"var scores = dartResult.split(whereSeparator: {!$0.isNumber}).map {Int($0)!}print(scores)// Prints "[1, 2, 3]"let letters = dartResult.split(whereSeparator: {$0.isNumber})print(letters)// Prints "["S", "D*", "T"]"
+subString
+// 3번째부터 끝까지let startIdx: String.Index = str.index(str.startIndex, offsetBy: 3)var result = String(str[startIdx...])// 처음부터 3번째까지let endIdx: String.Index = str.index(str.startIndex, offsetBy: 3)var result = String(str[...endIdx])
+문자열 반복
+let str = String(repeating: "ㅋ", count: 10)print(str) // "ㅋㅋㅋㅋㅋㅋㅋㅋㅋㅋ"
+
+
