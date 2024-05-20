@@ -1,0 +1,63 @@
+//
+//  ViewController.swift
+//  ImageView
+//
+//  Created by starlike_yejin on 5/16/24.
+//
+//이미지 프레임은 핸드폰 화면에 해당
+
+import UIKit
+
+class ViewController: UIViewController {
+    
+    var isZoom=false //확대여부
+    var imgOn: UIImage? //켜진 전구 이미지
+    var imgOff: UIImage?//꺼진 전구 이미지
+    
+
+    @IBOutlet var imgView: UIImageView!
+    @IBOutlet var btnResize: UIButton!
+    
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        // Do any additional setup after loading the view.
+        
+        imgOn=UIImage(named: "lamp_on 복사본.png")
+        imgOff=UIImage(named: "lamp_off 복사본.png")
+        
+        imgView.image=imgOn
+        
+    }
+//**메서드 명 입력할 때 반드시 자동으로 찾아주는 메서드를 사용하기.직접 입력하다가보묜 메서드명을 틀리게 입력할 수도 있고,정확하게 입력하더도 인식하지 못하고 에러가 발생할 수도 있음.
+    @IBAction func btnResizeImage(_ sender: UIButton) {
+        let scale:CGFloat=2.0
+        var newWidth:CGFloat,newHeight:CGFloat
+        //선언한 상수나 변수를 한번도 사용하지 않을 때는 경고 메세지가 나올 수도 있음
+        if(isZoom){//isZoom이 True 알 떄,true//현재 값이 '확대'일 떄 즉 isZoom변수 값이 true때
+            newWidth=imgView.frame.width/scale
+            newHeight=imgView.frame.height/scale //이미지 프레임의 가로 세로 크기에 scale로 나누어 newwidth와 newheigth에 할당합니다.
+            btnResize.setTitle("확대", for: .normal)
+            
+            
+        }else{//isZoom이 false일때 //현재 상태가 '축소'일때 즉 zoom변수값이 false 일 때
+            newWidth=imgView.frame.width*scale
+            newHeight=imgView.frame.height*scale//이미지 프레임임의 가로,세로 크기에 scale값을 곱하여 newWidth와 newHeight에 할당합니다
+            btnResize.setTitle("축소", for: .normal)
+            
+        }
+        imgView.frame.size = CGSize(width: newWidth, height: newHeight)
+        
+        isZoom = !isZoom
+    }
+    
+    @IBAction func switchImageOnOff(_ sender: UISwitch) {
+        if(sender.isOn){
+            imgView.image=imgOn
+        }else{
+            imgView.image=imgOff
+        }
+    }
+}
+//이미지 프레임은 가로세로 크기가 작아질수록 사진은 크게 보인다.이를테면 사진은 고정되어있고 이미지를 표시하거나 편집할 때 사용되는 가상의 사각형인 이미지프레임 즉 핸드폰 화면이 있다.핸드폰 화면은 이미지를 확대하거나 축소하여 보여주는 화면으로 이 화면 즉 프레임이 작아질수록 고정된 사진은 커보일 것이고,프레임이 커지면 고정된 사진은 작아 보일 것이다.
+
